@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ServeEase - Role Based Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background:   linear-gradient(45deg, rgba(40, 75, 99, 0.95), rgba(25, 45, 60, 0.95));
+
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 400px;
+      backdrop-filter: blur(10px);
+    }
+    h2 {
+      text-align: center;
+      color: #90e0ef;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      color: black;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #00b4d8;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0096c7;
+    }
+    .hamburger {
+  display: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+    }
+    
+  
+
+  </style>
+</head>
+<body>
+
+    
+  <div class="login-box">
+    <h2>Login</h2>
+    <form id="roleLoginForm">
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" required>
+      </div>
+      <div class="form-group">
+        <label>Password :</label>
+        <input type="password" required>
+      </div>
+      <div class="form-group">
+        <label>Role:</label>
+        <select id="roleSelect" required>
+          <option value="">-- Select Role --</option>
+          <option value="worker">Worker</option>
+          <option value="customer">Customer</option>
+        </select>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+
+  document.getElementById("roleLoginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const role = document.getElementById("roleSelect").value;
+    const email = document.querySelector('input[type="email"]').value;
+
+    
+    sessionStorage.setItem('currentUser', JSON.stringify({
+      email: email,
+      role: role
+    }));
+
+    if (role === "worker") {
+      window.location.href = "worker-dashboard.html";
+    } else if (role === "customer") {
+      window.location.href = "customer-dashboard.html";
+    } else {
+      alert("Please select a valid role.");
+    }
+  });
+
+
+    
+  </script>
+</body>
+</html>

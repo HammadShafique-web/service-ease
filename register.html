@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ServeEase - Register</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: linear-gradient(45deg, rgba(40, 75, 99, 0.95), rgba(25, 45, 60, 0.95));
+      color: white;
+      min-height: 100vh;
+    }
+    nav {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1000;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-img {
+      height: 40px;
+    }
+    nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #7EC8E3;
+    }
+    nav ul {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+    nav ul li a:hover {
+      background: rgba(127, 200, 227, 0.2);
+    }
+    .hero {
+      padding: 32px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    .registration-container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 32px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #7EC8E3;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.3);
+      color: white;
+    }
+
+    button {
+      background: #7EC8E3;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #6ab0c9;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: black;
+        position: fixed;
+        top: 70px;
+        right: 20px;
+        width: 250px;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 9999;
+        font-size: 20px;
+      }
+
+      nav ul li a {
+        color: aqua;
+      }
+
+      nav ul.show-menu {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .cards {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      #hj {
+        margin-top: 100px;
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    .card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+    }
+    .card-icon {
+      font-size: 2.5rem;
+      color: #7EC8E3;
+      margin-bottom: 15px;
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    .card h3 {
+      margin-bottom: 12px;
+      color: #7EC8E3;
+    }
+    footer {
+      padding: 24px;
+      text-align: center;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(5px);
+      margin-top: 64px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo-container">
+      <img src="ser.jpg" alt="Logo" class="logo-img" />
+      <div class="logo">ServeEase</div>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul id="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="About.html">About Us</a></li>
+      <li><a href="c.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <section id="hj">
+    <div class="registration-container">
+      <h2 style="text-align: center; margin-bottom: 24px;">Create Account</h2>
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required />
+        </div>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" required />
+        </div>
+        <div class="form-group">
+          <label for="role">Select Role</label>
+          <select id="role" required>
+            <option value="">Choose Role</option>
+            <option value="worker">Service Worker</option>
+            <option value="customer">Customer</option>
+          </select>
+        </div>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      menu.classList.toggle('show-menu');
+      if (menu.classList.contains('show-menu')) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    window.onload = function () {
+      document.getElementById('registrationForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const user = {
+          email: document.getElementById('email').value,
+          password: document.getElementById('password').value,
+          name: document.getElementById('name').value,
+          phone: document.getElementById('phone').value,
+          role: document.getElementById('role').value
+        };
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        users.push(user);
+        localStorage.setItem('users', JSON.stringify(users));
+        sessionStorage.setItem('currentUser', JSON.stringify({
+          email: user.email,
+          role: user.role
+        }));
+        if (user.role === 'worker') {
+          window.location.href = 'worker-dashboard.html';
+        } else {
+          window.location.href = 'customer-dashboard.html';
+        }
+      });
+    };
+  </script>
+</body>
+</html>

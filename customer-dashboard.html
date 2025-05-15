@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ServeEase - Customer Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: linear-gradient(45deg, rgba(40, 75, 99, 0.95), rgba(25, 45, 60, 0.95));
+      color: white;
+      min-height: 100vh;
+    }
+    /*
+    nav {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-img {
+      height: 40px;
+    }
+    nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #7EC8E3;
+    }
+    nav ul {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+    nav ul li a:hover {
+      background: rgba(127, 200, 227, 0.2);
+    }
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+    */
+
+    nav {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            margin-left: 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 40px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7EC8E3;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        #nav-menu {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        #nav-menu li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        #nav-menu li a:hover {
+            background: rgba(127, 200, 227, 0.2);
+        }
+
+
+    /* Dashboard Specific Styles */
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 2rem;
+      color: #7EC8E3;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 15px;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      color: #7EC8E3;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .book-btn {
+      background: #7EC8E3;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .book-btn:hover {
+      background: #6ab0c9;
+    }
+
+    .booked {
+      background: #4CAF50 !important;
+    }
+
+    .bookings-list {
+      margin-top: 40px;
+      padding: 20px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 15px;
+    }
+
+    .booking-item {
+      padding: 15px;
+      margin: 10px 0;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: slideIn 0.5s ease;
+    }
+#hj{
+  padding-top: 40px;
+}
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      /*
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: black;
+        position:fixed;
+        top: 70px;
+        right: 40px;
+        width: 250px;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+      }
+      #hj{
+        position: relative;
+        
+        z-index: 1;
+      }
+      
+      nav ul.show-menu {
+        display: flex;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      */
+      .hamburger {
+                display: block;
+            }
+
+            #nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(25, 45, 60, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                z-index: 1001;
+            }
+
+            #nav-menu.show-menu {
+                display: flex;
+            }
+#hj{
+  padding-top: 70px;
+}
+    }
+  </style>
+</head>
+<body>
+  
+    <!---
+    <div class="logo-container">
+      <img src="ser.jpg" alt="Logo" class="logo-img">
+      <div class="logo">ServeEase</div>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul id="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#bookings">My Bookings</a></li>
+      <li><a href="About.html">About Us</a></li>
+      <li><a href="c.html">Contact us</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  -->  <nav>
+    <div class="logo-container">
+      <img src="ser.jpg" alt="Logo" class="logo-img">
+      <div class="logo">ServeEase</div>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+  </div>
+  <ul id="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#car">Service</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="register.html">Register</a></li>
+  </ul>
+</nav>
+
+  
+<section id="hj">
+  <div class="dashboard-container">
+    <h1 class="section-title">Available Services</h1>
+    <div class="services-grid" id="services-grid"></div>
+
+    <h1 class="section-title" id="bookings">My Bookings</h1>
+    <div class="bookings-list" id="bookings-list"></div>
+  </div>
+</section>
+  <script>
+    
+  
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (!currentUser || currentUser.role !== 'customer') {
+      window.location.href = 'login.html';
+    }
+
+    const services = [
+  {
+    id: 1,
+    name: 'Plumbing',
+    icon: 'fa-tools',
+    description: 'Fixing leaks, installing pipes, and general plumbing services.',
+    price: 1500,
+    phone: '03001234567'
+  },
+  {
+    id: 2,
+    name: 'Electrical',
+    icon: 'fa-bolt',
+    description: 'Electrical repairs, wiring, lighting installation and maintenance.',
+    price: 1800,
+    phone: '03011234567'
+  },
+  {
+    id: 3,
+    name: 'Cleaning',
+    icon: 'fa-broom',
+    description: 'Home and office cleaning including deep cleaning services.',
+    price: 1000,
+    phone: '03021234567'
+  },
+  {
+    id: 4,
+    name: 'Carpentry',
+    icon: 'fa-hammer',
+    description: 'Woodwork, furniture making, and repairs.',
+    price: 2000,
+    phone: '03031234567'
+  },
+  {
+    id: 5,
+    name: 'Painting',
+    icon: 'fa-paint-roller',
+    description: 'Interior and exterior wall painting, polish and design work.',
+    price: 2500,
+    phone: '03041234567'
+  },
+  {
+    id: 6,
+    name: 'AC Repair',
+    icon: 'fa-fan',
+    description: 'AC gas filling, filter cleaning, and maintenance services.',
+    price: 2200,
+    phone: '03051234567'
+  },
+  {
+    id: 7,
+    name: 'Pest Control',
+    icon: 'fa-bug',
+    description: 'Termite, insect and rodent control for homes and businesses.',
+    price: 2700,
+    phone: '03061234567'
+  },
+  {
+    id: 8,
+    name: 'Gardening',
+    icon: 'fa-leaf',
+    description: 'Lawn care, plant maintenance, and garden design.',
+    price: 1200,
+    phone: '03071234567'
+  },
+  {
+    id: 9,
+    name: 'Appliance Repair',
+    icon: 'fa-blender',
+    description: 'Repair services for household appliances like fridge, microwave, etc.',
+    price: 1600,
+    phone: '03081234567'
+  }
+];
+
+    let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    function renderServices() {
+  const servicesGrid = document.getElementById('services-grid');
+  servicesGrid.innerHTML = services.map(service => `
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas ${service.icon}"></i>
+      </div>
+      <h3>${service.name}</h3>
+      <p><strong>Description:</strong> ${service.description}</p>
+      <p><strong>Price:</strong> PKR ${service.price}</p>
+      <p><strong>Contact:</strong> ${service.phone}</p>
+      <button class="book-btn" onclick="bookService(${service.id})">Book Now</button>
+    </div>
+  `).join('');
+}
+
+   
+    function renderBookings() {
+      const userBookings = bookings.filter(b => b.userEmail === currentUser.email);
+      const bookingsList = document.getElementById('bookings-list');
+      bookingsList.innerHTML = userBookings.map(booking => `
+        <div class="booking-item">
+          <div>
+            <h3>${booking.serviceName}</h3>
+            <small>Booked on: ${new Date(booking.date).toLocaleDateString()}</small>
+          </div>
+          <button onclick="cancelBooking(${booking.id})">Cancel</button>
+        </div>
+      `).join('');
+    }
+
+    function isBooked(serviceId) {
+      return bookings.some(b => 
+        b.serviceId === serviceId && b.userEmail === currentUser.email
+      );
+    }
+
+    function bookService(serviceId) {
+      const service = services.find(s => s.id === serviceId);
+      const booking = {
+        id: Date.now(),
+        serviceId: service.id,
+        serviceName: service.name,
+        userEmail: currentUser.email,
+        date: new Date().toISOString()
+      };
+
+      bookings.push(booking);
+      localStorage.setItem('bookings', JSON.stringify(bookings));
+      renderServices();
+      renderBookings();
+    }
+
+    function cancelBooking(bookingId) {
+      bookings = bookings.filter(b => b.id !== bookingId);
+      localStorage.setItem('bookings', JSON.stringify(bookings));
+      renderServices();
+      renderBookings();
+    }
+
+    function logout() {
+      sessionStorage.removeItem('currentUser');
+      window.location.href = 'login.html';
+    }
+
+
+   /* function toggleMenu() {
+      const navMenu = document.getElementById('nav-menu');
+      navMenu.classList.toggle('show-menu');
+    }
+    */
+    let menuOpen = false;
+    function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menuOpen = !menuOpen;
+            menu.classList.toggle('show-menu', menuOpen);
+            
+            if(menuOpen) {
+                document.addEventListener('click', closeMenuOutside);
+            } else {
+                document.removeEventListener('click', closeMenuOutside);
+            }
+        }
+
+        function closeMenuOutside(event) {
+            const menu = document.getElementById('nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menuOpen = false;
+                menu.classList.remove('show-menu');
+                document.removeEventListener('click', closeMenuOutside);
+            }
+        }
+    
+    renderServices();
+    renderBookings();
+  </script>
+</body>
+</html>

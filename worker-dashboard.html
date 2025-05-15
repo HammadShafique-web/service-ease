@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServeEase - Worker Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, rgba(40, 75, 99, 0.95), rgba(25, 45, 60, 0.95));
+            color: white;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 40px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7EC8E3;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        #nav-menu {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        #nav-menu li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        #nav-menu li a:hover {
+            background: rgba(127, 200, 227, 0.2);
+        }
+
+        .registration-container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-grid {
+          /*
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #7EC8E3;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            margin-top: 0.5rem;
+        }
+
+        button {
+          margin-top: 30px;
+          margin-left: 40%;
+          padding-left: 100px;
+          width: 250px; ;
+            background: #7EC8E3;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #6ab0cb;
+            transform: translateY(-2px);
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            #nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(25, 45, 60, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                z-index: 1001;
+            }
+
+            #nav-menu.show-menu {
+                display: flex;
+            }
+
+
+        button {
+          margin-top: 30px;
+          margin-left:25%;
+          width: 150px; ;
+            background: #7EC8E3;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        #servicesList{
+padding: 30px;
+padding-left:0px;
+width: 250px;
+margin: 5px;
+display: flex;
+flex-direction: column;
+
+overflow: hidden;
+        }
+        .service-card img{
+            
+            width: 150px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+        }
+        
+        
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .registration-container {
+                margin: 80px 1rem 2rem;
+                
+                
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <img src="ser.jpg" alt="Logo" class="logo-img">
+            <div class="logo">ServeEase</div>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#car">Service</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+        </ul>
+    </nav>
+
+    <div class="registration-container">
+        <h1>Worker Dashboard</h1>
+        <p>Wellcome to your proffessional Dashboard </p>
+        <form class="service-form" onsubmit="addService(event)">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Service Image</label>
+                    <input type="file" id="serviceImage" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="serviceDesc" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Price (Rs)</label>
+                    <input type="number" id="servicePrice" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="servicePhone" required>
+                </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="text" id="serviceTime" required>
+                </div>
+            </div>
+            <button type="submit">Add Service</button>
+        </form>
+
+        <div class="services-container" id="servicesList">
+            
+        </div>
+        <button onclick="logout()" style="margin-top: 2rem;">Logout</button>
+    </div>
+
+    <script>
+      
+    
+        let services = [];
+        let menuOpen = false;
+
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menuOpen = !menuOpen;
+            menu.classList.toggle('show-menu', menuOpen);
+            
+            if(menuOpen) {
+                document.addEventListener('click', closeMenuOutside);
+            } else {
+                document.removeEventListener('click', closeMenuOutside);
+            }
+        }
+
+        function closeMenuOutside(event) {
+            const menu = document.getElementById('nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menuOpen = false;
+                menu.classList.remove('show-menu');
+                document.removeEventListener('click', closeMenuOutside);
+            }
+        }
+
+        function addService(e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('serviceImage');
+            const file = fileInput.files[0];
+
+
+            if (!file) {
+                alert("Please select an image.");
+                return;
+            }
+
+            const newService = {
+                id: Date.now(),
+                image: URL.createObjectURL(file),
+                description: document.getElementById('serviceDesc').value,
+                price: document.getElementById('servicePrice').value,
+                phone: document.getElementById('servicePhone').value,
+                time: document.getElementById('serviceTime').value
+            };
+
+            services.unshift(newService);
+            updateServiceList();
+            e.target.reset();
+            document.getElementById('servicesList').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateServiceList() {
+            const container = document.getElementById('servicesList');
+            container.innerHTML = '';
+            
+            services.forEach(service => {
+                const card = document.createElement('div');
+                card.className = 'service-card';
+                card.innerHTML = `
+                    <button class="remove-btn" onclick="removeService(${service.id})">&times;</button>
+                    <img src="${service.image}" class="img" alt="Service Image">
+                    <h3>Rs ${service.price}</h3>
+                    <p>${service.description}</p>
+                    <div class="service-details">
+                        <p><strong>Time:</strong> ${service.time}</p>
+                        <p><strong>Contact:</strong> ${service.phone}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function removeService(id) {
+            services = services.filter(service => service.id !== id);
+            updateServiceList();
+        }
+
+        function logout() {
+            window.location.href = "login.html";
+        }
+
+        // Initial service examples (optional)
+        window.onload = () => {
+            services = [{
+                id: 1,
+                image: "https://via.placeholder.com/300",
+                description: "Sample Plumbing Service",
+                price: "1500",
+                phone: "0312-3456789",
+                time: "9 AM - 5 PM"
+            }];
+            updateServiceList();
+        }
+    </script>
+</body>
+</html>

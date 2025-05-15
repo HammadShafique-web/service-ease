@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ServeEase - About Us</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(45deg, rgba(40, 75, 99, 0.95), rgba(25, 45, 60, 0.95));
+      color: white;
+      min-height: 100vh;
+      padding-top: 70px; /* Space for fixed navigation */
+    }
+    
+    nav {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+    }
+
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #7EC8E3;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #7EC8E3;
+    }
+
+    .hamburger {
+      display: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+  
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: rgba(25, 45, 60, 0.95);
+        backdrop-filter: blur(12px);
+        position: absolute;
+        top: 100%;
+        right: 1rem;
+        width: 250px;
+        padding: 1rem;
+        border-radius: 8px;
+        z-index: 1000;
+      }
+
+      nav ul.show-menu {
+        display: flex;
+      }
+
+      nav ul li a {
+        color: #7EC8E3;
+        padding: 12px;
+        display: block;
+      }
+
+      nav ul li a:hover {
+        background: rgba(127, 200, 227, 0.1);
+      }
+
+      .hamburger {
+        display: block;
+        z-index: 1001;
+      }
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .about-header {
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .about-header h1 {
+      font-size: 2.5rem;
+      color: #7EC8E3;
+      margin-bottom: 1rem;
+    }
+
+    .mission-section, .team-section {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .team-member {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .member-img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid #7EC8E3;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .stat-box {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(127, 200, 227, 0.1);
+      border-radius: 10px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      color: #7EC8E3;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .about-header h1 {
+        font-size: 2rem;
+      }
+      
+      .mission-section, .team-section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo-container">
+      <img src="ser.jpg" alt="Logo" class="logo-img">
+      <div class="logo">ServeEase</div>
+    </div>
+  
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    
+    <ul id="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#car">Services</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="About.html">About US</a></li>
+      <li><a href="c.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <div class="about-container">
+    <div class="about-header">
+      <h1>About ServeEase</h1>
+      <p>Connecting you with quality service professionals since 2023</p>
+    </div>
+
+    <section class="mission-section">
+      <h2>Our Mission</h2>
+      <p>To revolutionize the service industry by providing seamless connections between customers and verified professionals.</p>
+    </section>
+    <section class="team-section">
+      <h2>Meet the Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="ha.jpeg" alt="CEO" class="member-img">
+          <h3>Hammad Shafique</h3>
+          <p>Student Of BS Computer Science</p>
+          <p>CEO & Founder</p>
+        </div>
+    
+        <div class="team-member">
+          <img src="you.jpeg" alt="Younus" class="member-img">
+          <h3>Younus Hassan Khan</h3>
+          <p>Student Of BS Computer Science</p>
+          <p>Idea & Co-Founder</p>
+        </div>
+    
+        <div class="team-member">
+          <img src="da.jpeg" alt="Danail" class="member-img">
+          <h3>Danail Riaz</h3>
+          <p>Student Of BS Computer Science</p>
+          <p>Tester</p>
+        </div>
+      </div>
+    </section>
+    
+    
+    </section>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-number">50+</div>
+        <p>Happy Customers</p>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">20+</div>
+        <p>Verified Professionals</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const navMenu = document.getElementById('nav-menu');
+      navMenu.classList.toggle('show-menu');
+    }
+  </script>
+</body>
+</html>
